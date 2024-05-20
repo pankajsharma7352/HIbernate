@@ -1,0 +1,21 @@
+Spring boot is used to develop the rest-api's.
+
+
+REST API:- representational state transfer: which means we can transfer the data in the form of raw(which is not in the form of any programmmatic language and can be easily understand by all the programming languages).
+
+. rest-api is the process of exchanging information between service receiver and service provider in the form of raw data. rest-api is not a programming language.
+. json,xml,html etc are the ways used to exchange information in rest-api.
+
+json: json stands for javascript object notation. json i sa data interchange format.
+
+Advantages of SpringBoot:
+1. Auto-configuration
+2. Embedded tomcat server(every spring boot application has it inbuilt tomcat server)& embedded h2 database
+3. it provides flexible-way to configure xml's dependency injection
+4. Starter files (no need to remember the versions)
+
+
+. findById() is used to fetch the data from the database based on id. the return type is Optional class, which can store the not null values.
+. get() is used to fetch the optional class.
+
+

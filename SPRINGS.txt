@@ -1,0 +1,80 @@
+SPRINGS:
+spring is a open source lightweight framework which is used to build enterprise applications. spring is considered as framework of frameworks.
+spring simplifies the code complexity in the development of application by providing multiple modules.
+Example: spring ioc
+	 spring mvc
+	 spring boot, spring cloud, spring aop etc....
+
+SPRING CORE (or)  SPRING IOC:
+spring core is the core of the spring framework. spring core or ioc provides the features like:
+		1. IOC containers
+		2. Dependency injection
+		3. pojo classes
+
+pojo classes: if a class has atleast one public or protected or default fields is called as pojo class.
+
+Java Beans: the classes which has only private fields  are called as java beans.
+
+note: all java beans are considered as pojo classes.
+
+
+Spring-core or ioc contains:
+1. variable injection
+2. setter injection
+3. constructor injection
+(all three are dependency injections(if the dependency is injected by the ioc containers then it is known as dependency injections))
+
+. ioc containers are used to instantiate the objects for pojo classes.(instead of programmer the ioc container will create the object)
+. two types of ioc containers:
+1. Bean Factory(it will support XML based configuration)
+2. Application context(it will support annotation based configuration)(it is considered as the advanced ioc container)
+
+
+
+
+
+18/01/2024							MODEL AND VIEW CONTROLLER
+
+model view controller:
+	MVC architecture is a design pattern to develop web applications.
+What is model:
+	model represents the data. model responds to the request from view and performs operations instructed by the controller.
+
+What is controller:
+	controller is responsible to handle the request and modifies the state of data model objects. Controller has the business logic of the application.
+
+
+								SPRING - MVC
+
+spring mvc is a java spring framework which is used to build web applications. spring mvc follows MVC architecture.
+
+spring mvc implements the spring core features like Ioc, dependency injection.
+
+Model in mvc:
+	A model in mvc represents the data. it can be in the form of object or collection of objects.
+
+view in mvc:
+	view represents the data in specific format. in spring mvc, we can use view technologies like jsp, apache velocity, ajax etc..
+
+Controller in mvc:
+	controllers are responsible to handle request. controller classes has the business logic. we use @controller to make a class as controller class.
+
+Architecture of spring mvc:
+
+
+
+what is Front controller?
+	In spring mvc, Dispatcher servlet acts as front controller. Dispatcher servlet is responsible to maintain the flow of spring mvc architecture.
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+SpringBoot layers:
+1. Controller layer: in this one all the controller classes will be there.
+2. Business layer / service layer : @service annotation will be used at the top of the class.
+3. DAO layer: database logics will be written inside the dao.
+4. Repository layer
+
+
+
+

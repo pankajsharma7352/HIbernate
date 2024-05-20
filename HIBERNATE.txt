@@ -1,0 +1,186 @@
+ HIBERNATE
+
+# Hibernate is a orm(object relational mapping) tool framework which connects Java Application with Database.
+# the functionality of orm tool is to convert object as data in the database.(or)(maps the object as data in the database).
+# in hibernate the query should be written in HQL(hibernate query language) and it was internally executed by other databases based on the user. so it was "database independent".
+# hibernate itself write the queries behalf of the user for a particular databaes.
+# in hibernate the programmer need not to handled the exceptions as the hibernate considered those as unchecked exceptions.
+# in hibernate the programmer need not to write any queries as the hibernate itself write the queries using some built-in methods.
+
+=>Drawbacks of JDBC:
+# it is Database dependent(as it is applicable only for that particular database. in JDBC the queries which are written used one database, if the database is changed the user has to change the query according to the database)(whenever the programmer migrated from one database to another one, he has to write the query accordingly)
+# programmer must have database knowledge.
+# programmer has to explicitly handled the exceptions as we have checked exceptions.
+# establishing relationships with tables (or) mapping reltionships with tables is complicated.
+# programmer has to write queries to perform each and every operation.
+
+
+==> to overcome this disadvantages we are going to use a orm tool called as HIBERNATE.
+
+Advantages of Hibernate:
+
+# it is database independent.
+# we need not to create any tables as hibernate internally creates the table.
+# programmer need not to handle any exceptions(it is unchecked exceptions).
+# simplifies mapping relationships b/w table.
+#it provides inbuilt methods to operations with database.
+
+Q. why performance of hibernate is slower than jdbc?
+	The preformance of hibernate is slower than jdbc because hibernate  writes the HQL query and converts the query into db query language during the runtime. But in jdbc, the queries are directly executed. 
+
+@Entity:
+	 @entity annotation is used to mark a class as entity class. A entity class which represents a table in relational database.
+==> A class is said to be entity class, if it is annotated with @entity annotation.
+==> A entity class name
+==> along with this default constructor is also mandatory for the entity class. if the parametized constructor is there without default constructor JVM throws Instantion Exception.
+
+
+-------------------------------------------------------------------------------------------------------------
+
+interfaces that can be used for hibernate:
+	1. EntityManagerFactory[Establish connection  b/w J.A and D.B. It creates tables for all the entity classes in application]
+	2. Entity Manager[inbuilt methods to perform CRUD operations]
+	3. Entity Transaction[begin and commit() the transaction]
+
+
+
+Entity Manager:
+# operations of entity manager-
+1. persist(used to save the data)
+2. find(used to fetch the data)
+3. merge(used to save and update the data)
+4. remove
+
+
+Mappings in hibernate: the process the establishing the relationship
+
+these are divided into 4types:
+1. 1 to 1 relationship
+2. 1 to many relationship
+3. many to one relationship
+4. many to many relationship
+
+
+
+1. 1 to 1 relationship:
+
+. one row of one table can be associated with one row of another table.
+. @OneToOne annotation will be used.
+Ex: country and prime minister
+
+# @Column(nullable = boolean value) used not to accept the null values in a column.
+
+2. 1 to many relationship:
+
+. one row of one table can be associated with many rows of another table.
+. @OneToMany annotation will be used.
+. hibernate will create one extra table in one to many relationship.
+Ex: company and employee
+
+3. many to 1 relationship:
+
+. many rows of one table can be associated with one row of another table.
+. hibernate doesnot create any extra table but it will create one extra column.
+Ex: branches and hospital
+
+@Table(name="countries")==> we will use this annotation if the table name we are giving which is already existed.
+						OR
+we will use the @Entity(name="")  instead of @Table as it was internally used the entity itself.
+
+4.ManyToMany relationship:
+
+. Many rows of one table is associated with many rows another table.
+. @ManyToMany annotation will be used.
+
+cacheing: it is used whenver we want to fetch the same data multiple times we will go for cacheing.
+. these are of two types:
+1. first level cacheing
+# the programmer need not to hit/communicate the database multiple times.
+# it is defaultly used by the hibernate.
+2. second level cacheing
+# whenever we have multiple entity managers we will go for second level cacheing  memory.
+# it is common for all the entity managers.
+# it was explicitly enabled by the programmer.
+
+# @Cacheable will be used
+# @Cache(usage = CacheConcurrencyStrategy.READ_ONLY) only to fetch the data.
+
+Ex:
+import javax.persistence.Cacheable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+@Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+public class user {
+	@Id
+	private int id;
+	private String Uname;
+	private int age;
+	private String email;
+	private String password;
+	public int getId() {
+		return id;
+	}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+06/01/24
+
+LIFE CYCLE OF HIBERNATE:
+
+# the object will be in transient state whenever the data is modified.
+# and the data will be stored by using persist() method in the persistent context.
+# then the object will be detached  in the detached state.
+
+1. Transcient state
+2. Persistence state
+3. Detached state(the connection b/w object and persistence context will be removed)
+4. Remove state
+---------------------------------------------------------------------------------------------
+Cascading:
+if any operation is performed on source entity then the target entity will also get effected.
+# source entity-  which is having relationship
+# target entity-  which is in relationship
+@Cascade(CascadeType.ALL) annotation will be used and it will perform many operations.
+these cascading is used in onetomany and onetomany relationships
+
+# @JoinColumn, mappedBy, @Jointable
+
+. to avoid the duplicate tables which are created we will use @JoinColumn, mappedBy annotations.
+. @Jointable annotation will be used to modify the properties(changing the table name or column name) of the joint tables
+
+@JoinTable(name="companyDetails", joinColumns = @JoinColumn(name="compannnyyy"), inverseJoinColumns = @JoinColumn(name="employeeess"))
+
+. inversejoincolumns are used to specify the foreign keys.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Composite key in hibernate:
+. whenever we want to make more than one primary key for a table then we go for composite key.
+. the multiple primary keys that are provided by the hibernate can be taken as single one itself to the database.
+. we can make two primary keys for a table in two ways:
+	1. @Idclass
+	2. @EmbeddedId  or  @Embeddable
+# EMBEDDABLE CLASS:
+. is a class which can represents states(variables of an entity class) of an entity class but doesnot have persistent identity(the obj which can be saved in database).
+
+@Embeddable  // used to mark a class as embeddable class
+// A embeddable is a class which has properties of entity class but does not have persistent identity 
+@EmbeddedId  // used to mark a composite key for a entity class
+
+
+
+
+
+
+
+
+
+
+
+
+
